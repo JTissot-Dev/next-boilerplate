@@ -1,0 +1,42 @@
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import ResetPasswordForm from "./ResetPasswordForm";
+import useResetPasswordForm from "../hooks/use-reset-password-form";
+
+const ResetPasswordCard: React.FC = () => {
+
+  const { loading, form, onSubmit } = useResetPasswordForm();
+  const formId = "reset-password-form";
+
+  return (
+    <Card className="w-full sm:w-[400px] overflow-hidden">
+      <CardHeader className="text-center">
+        <CardTitle>Réinitialiser votre mot de passe</CardTitle>
+        <CardDescription>
+          Veuillez saisir votre nouveau mot de passe pour continuer.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="my-2">
+          <ResetPasswordForm formId={formId} form={form} onSubmit={onSubmit} />
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-center">
+        <Button form={formId} type="submit" className="w-full" disabled={loading}>
+          {loading ? "Chargement en cours..." : "Valider"}
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
+export default ResetPasswordCard;

@@ -7,7 +7,6 @@ import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import useSignOut from "../api/use-signout";
 
 const LogoutButton: React.FC = () => {
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { signOut } = useSignOut();
 
@@ -15,8 +14,8 @@ const LogoutButton: React.FC = () => {
     <>
       <Button
         variant="outline"
-        size="icon"
-        onClick={() => setIsOpen(true)}
+        size="icon" onClick={() => setIsOpen(true)}
+        data-testid="logout-button"
       >
         <LogOut className="h-5 w-5" />
       </Button>
@@ -28,7 +27,7 @@ const LogoutButton: React.FC = () => {
         onConfirm={signOut}
       />
     </>
-  )
-}
+  );
+};
 
 export default LogoutButton;

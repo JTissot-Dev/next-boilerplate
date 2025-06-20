@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,31 +5,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import VerifyEmailForm from "./VerifyEmailForm"
-import useSendVerifyEmail from "../api/use-send-verify-email"
-import React from "react"
-
+} from "@/components/ui/dialog";
+import VerifyEmailForm from "./VerifyEmailForm";
+import useVerifyEmailForm from "../hooks/use-verify-email-form";
+import LoadingButton from "@/components/common/LoadingButton";
 
 type VerifyEmailDialogProps = {
   isOpenDialog: boolean;
   setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 const VerifyEmailDialog: React.FC<VerifyEmailDialogProps> = ({
   isOpenDialog,
   setIsOpenDialog,
-  setShowAlert,
 }) => {
-  const { sendVerifyEmail, loading } = useSendVerifyEmail();
+  const { form, onSubmit, loading } = useVerifyEmailForm();
   const formId = "verify-email-form";
 
   return (
-    <Dialog
-      open={isOpenDialog}
-      onOpenChange={setIsOpenDialog}
-    >
+    <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
       <form>
         <DialogContent className="sm:max-w-[435px] space-y-2">
           <DialogHeader>
@@ -42,20 +35,26 @@ const VerifyEmailDialog: React.FC<VerifyEmailDialogProps> = ({
           <div className="mb-4">
             <VerifyEmailForm
               formId={formId}
-              sendVerifyEmail={sendVerifyEmail}
+              form={form}
+              onSubmit={onSubmit}
               setIsOpenDialog={setIsOpenDialog}
-              setShowAlert={setShowAlert}
             />
           </div>
           <DialogFooter>
-            <Button form={formId} type="submit" className="w-full" disabled={loading}>
-              {loading ? "Envoi en cours..." : "Envoyer"}
-            </Button>
+            <LoadingButton
+              loading={loading}
+              loadingText="Envoi en cours..."
+              className="w-full"
+              type="submit"
+              form={formId}
+            >
+              Envoyer
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </form>
     </Dialog>
-  )
-}
+  );
+};
 
-export default VerifyEmailDialog
+export default VerifyEmailDialog;

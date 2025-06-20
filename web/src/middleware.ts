@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
-
-const guestRoutes = [
-  "/",
-  "/login",
-  "/signup",
-  "/reset-password",
-];
+const guestRoutes = ["/", "/login", "/signup", "/reset-password"];
 const authRoutes = [
   "/",
   "/dashboard",
@@ -21,19 +15,18 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   if (guestRoutes.includes(truncatePath)) {
-    if (sessionCookie) return NextResponse.redirect(new URL("/dashboard", request.url));
+    if (sessionCookie)
+      return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   if (authRoutes.includes(truncatePath)) {
-    if (!sessionCookie) return NextResponse.redirect(new URL("/login", request.url));
+    if (!sessionCookie)
+      return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    ...guestRoutes,
-    ...authRoutes
-  ],
+  matcher: [...guestRoutes, ...authRoutes],
 };

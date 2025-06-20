@@ -1,8 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import type { UseFormReturn } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -13,47 +11,41 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-
-// Schéma de validation Zod
-const formSchema = z.object({
-  email: z.string().email({ message: "Email invalide" }),
-});
-
-type VerifyEmailFormValues = z.infer<typeof formSchema>;
+import type { VerifyEmailFormValues } from "../hooks/use-verify-email-form";
 
 type VerifyEmailFormProps = {
   formId: string;
-  sendVerifyEmail: (email: string) => void;
+  form: UseFormReturn<
+    {
+      email: string;
+    },
+    any,
+    {
+      email: string;
+    }
+  >;
+  onSubmit: (values: VerifyEmailFormValues) => void;
   setIsOpenDialog?: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowAlert?: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
   formId,
-  sendVerifyEmail,
+  form,
+  onSubmit,
   setIsOpenDialog,
-  setShowAlert,
 }) => {
 
-
-  const form = useForm<VerifyEmailFormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
-
-  const onSubmit = async (values: VerifyEmailFormValues) => {
-    console.log("Form submitted with values:", values);
-    sendVerifyEmail(values.email);
-    if (setIsOpenDialog) setIsOpenDialog(false);
-    if (setShowAlert) setShowAlert(false);
-  };
-
   return (
-
     <Form {...form}>
-      <form id={formId} onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        id={formId}
+        data-testid={formId}
+        onSubmit={
+          form.handleSubmit((values) => {
+            onSubmit(values);
+            if (setIsOpenDialog) setIsOpenDialog(false);
+          })
+        }
+      >
         <FormField
           control={form.control}
           name="email"
@@ -63,7 +55,7 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
-              <FormDescription>L’adresse email à vérifier.</FormDescription>
+              <FormDescription>L&apos;adresse email à vérifier.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -71,6 +63,6 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
       </form>
     </Form>
   );
-}
+};
 
 export default VerifyEmailForm;

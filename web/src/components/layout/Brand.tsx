@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { GalleryVerticalEnd } from "lucide-react";
@@ -6,17 +6,16 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 
 export function Brand() {
-
   const router = useRouter();
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           size="lg"
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
         >
@@ -24,13 +23,11 @@ export function Brand() {
             <GalleryVerticalEnd className="size-4" color="black" />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">
-              Brand Name
-            </span>
+            <span className="truncate font-semibold">Brand Name</span>
             <span className="truncate text-xs">Brand description</span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

@@ -15,23 +15,30 @@ import { ResetPasswordFormValues } from "../hooks/use-reset-password-form";
 
 type ResetPasswordFormProps = {
   formId: string;
-  form: UseFormReturn<{
-    password: string;
-  }, any, {
-    password: string;
-  }>;
+  form: UseFormReturn<
+    {
+      password: string;
+    },
+    any,
+    {
+      password: string;
+    }
+  >;
   onSubmit: (values: ResetPasswordFormValues) => void;
-}
+};
 
 const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   formId,
   form,
-  onSubmit
+  onSubmit,
 }) => {
-
   return (
     <Form {...form}>
-      <form id={formId} onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        id={formId}
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+      >
         <FormField
           control={form.control}
           name="password"
@@ -41,7 +48,9 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
               <FormControl>
                 <Input type="password" placeholder="••••••••" {...field} />
               </FormControl>
-              <FormDescription>Doit contenir au moins 6 caractères.</FormDescription>
+              <FormDescription>
+                Doit contenir au moins 6 caractères.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -49,6 +58,6 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
       </form>
     </Form>
   );
-}
+};
 
 export default ResetPasswordForm;

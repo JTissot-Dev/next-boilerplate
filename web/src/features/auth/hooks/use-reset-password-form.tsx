@@ -1,9 +1,8 @@
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import useResetPassword from "../api/use-reset-password";
-
 
 // Schéma de validation Zod
 const formSchema = z.object({
@@ -16,7 +15,7 @@ export type ResetPasswordFormValues = z.infer<typeof formSchema>;
 
 const useResetPasswordForm = () => {
   const searchParams = useSearchParams();
-  const token = searchParams.get('token') || "";
+  const token = searchParams.get("token") || "";
   const { resetPassword, loading } = useResetPassword();
 
   const form = useForm<ResetPasswordFormValues>({
@@ -35,6 +34,6 @@ const useResetPasswordForm = () => {
     onSubmit,
     loading,
   };
-}
+};
 
 export default useResetPasswordForm;

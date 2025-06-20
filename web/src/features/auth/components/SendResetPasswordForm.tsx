@@ -1,8 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import type { UseFormReturn } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -13,42 +11,42 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-// Schéma de validation Zod
-const formSchema = z.object({
-  email: z.string().email({ message: "Email invalide" }),
-});
-
-type SendResetPasswordFormValues = z.infer<typeof formSchema>;
+import type { SendResetPasswordFormValues } from "../hooks/use-send-reset-password-form";
 
 type SendResetPasswordFormProps = {
   formId: string;
-  sendResetPasswordEmail: (email: string) => void;
+  form: UseFormReturn<
+    {
+      email: string;
+    },
+    any,
+    {
+      email: string;
+    }
+  >;
+  onSubmit: (values: SendResetPasswordFormValues) => void;
   setIsOpenDialog?: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
+
 const SendResetPasswordForm: React.FC<SendResetPasswordFormProps> = ({
   formId,
-  sendResetPasswordEmail,
+  form,
+  onSubmit,
   setIsOpenDialog,
 }) => {
 
-
-  const form = useForm<SendResetPasswordFormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
-
-  const onSubmit = async (values: SendResetPasswordFormValues) => {
-    sendResetPasswordEmail(values.email);
-    if (setIsOpenDialog) setIsOpenDialog(false);
-  };
-
   return (
-
     <Form {...form}>
-      <form id={formId} onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        data-testid={formId}
+        id={formId}
+        onSubmit={
+          form.handleSubmit((values) => {
+            onSubmit(values);
+            if (setIsOpenDialog) setIsOpenDialog(false);
+          })
+        }
+      >
         <FormField
           control={form.control}
           name="email"
@@ -58,7 +56,9 @@ const SendResetPasswordForm: React.FC<SendResetPasswordFormProps> = ({
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
-              <FormDescription>L’adresse email de votre compte.</FormDescription>
+              <FormDescription>
+                L&apos;adresse email de votre compte.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -66,6 +66,6 @@ const SendResetPasswordForm: React.FC<SendResetPasswordFormProps> = ({
       </form>
     </Form>
   );
-}
+};
 
 export default SendResetPasswordForm;

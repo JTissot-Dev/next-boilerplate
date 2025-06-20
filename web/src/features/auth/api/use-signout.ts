@@ -2,7 +2,6 @@ import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
 const useSignOut = () => {
-
   const router = useRouter();
 
   const signOut = async () => {

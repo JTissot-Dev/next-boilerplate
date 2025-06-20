@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 
-
 const useSignInGitHub = () => {
-
   const [loading, setLoading] = useState(false);
 
   const signInGitHub = async () => {
-    const result = await authClient.signIn.social({
-      provider: "github",
-      callbackURL: "/dashboard"
-    },
+    const result = await authClient.signIn.social(
+      {
+        provider: "github",
+        callbackURL: "/dashboard",
+      },
       {
         onRequest: () => {
           setLoading(true);
@@ -21,11 +20,14 @@ const useSignInGitHub = () => {
         onSuccess: () => {
           setLoading(false);
         },
-        onError: (ctx) => {
+        onError: () => {
           setLoading(false);
-          toast.error("Une erreur s'est produite lors de la connexion. Veuillez réessayer.");
-        }
-      })
+          toast.error(
+            "Une erreur s'est produite lors de la connexion. Veuillez réessayer.",
+          );
+        },
+      },
+    );
     return result;
   };
 

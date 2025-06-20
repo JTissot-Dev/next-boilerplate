@@ -8,7 +8,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-
 type ConfirmDialogProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,18 +23,12 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   description,
   onConfirm,
 }) => {
-
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={setIsOpen}
-    >
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>
-            {description}
-          </DialogDescription>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-end">
           <Button
@@ -43,7 +36,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             variant="default"
             onClick={() => {
               onConfirm();
-              setIsOpen(false)
+              setIsOpen(false);
             }}
           >
             Confirmer
@@ -51,5 +44,5 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

@@ -13,7 +13,6 @@ import ResetPasswordForm from "./ResetPasswordForm";
 import useResetPasswordForm from "../hooks/use-reset-password-form";
 
 const ResetPasswordCard: React.FC = () => {
-
   const { loading, form, onSubmit } = useResetPasswordForm();
   const formId = "reset-password-form";
 
@@ -31,12 +30,17 @@ const ResetPasswordCard: React.FC = () => {
         </div>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Button form={formId} type="submit" className="w-full" disabled={loading}>
+        <Button
+          form={formId}
+          type="submit"
+          className="w-full"
+          disabled={loading}
+        >
           {loading ? "Chargement en cours..." : "Valider"}
         </Button>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
 export default ResetPasswordCard;

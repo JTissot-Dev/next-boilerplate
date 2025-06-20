@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import useSignIn from "../api/use-signin";
+import { useAuthContext } from "../context";
 
-// Schéma de validation Zod
 const formSchema = z.object({
   email: z.string().email({ message: "Email invalide" }),
   password: z
@@ -20,9 +20,8 @@ const useLoginForm = () => {
   const verified = searchParams.get("verified");
 
   const { signIn, loading, error } = useSignIn();
-  const [showEmailNotVerifyAlert, setEmailNotVerifyAlert] = useState<boolean>(false);
-  const [showEmailVerifyAlert, setEmailVerifyAlert] = useState<boolean>(false);
-  const [isOpenSendResetPasswordDialog, setIsOpenSendResetPasswordDialog] = useState<boolean>(false);
+
+  const { setEmailNotVerifyAlert, setEmailVerifyAlert } = useAuthContext();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(formSchema),
@@ -40,22 +39,16 @@ const useLoginForm = () => {
     if (error === "Email not verified") {
       setEmailNotVerifyAlert(true);
     }
-  }, [error]);
+  }, [error, setEmailNotVerifyAlert]);
 
   useEffect(() => {
     if (verified) setEmailVerifyAlert(true);
-  }, [verified]);
+  }, [verified, setEmailVerifyAlert]);
 
   return {
     form,
     onSubmit,
     loading,
-    showEmailNotVerifyAlert,
-    setEmailNotVerifyAlert,
-    showEmailVerifyAlert,
-    setEmailVerifyAlert,
-    isOpenSendResetPasswordDialog,
-    setIsOpenSendResetPasswordDialog,
   };
 };
 

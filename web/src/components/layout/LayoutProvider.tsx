@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -6,7 +6,7 @@ import queryClient from "@/lib/query-client";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
-  children
+  children,
 }) => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -17,10 +17,8 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
         disableTransitionOnChange
       >
         <Toaster richColors />
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </ThemeProvider>
     </QueryClientProvider>
   );
-}
+};

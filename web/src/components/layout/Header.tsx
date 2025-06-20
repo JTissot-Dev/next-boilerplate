@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import AppBreadcrumb from "./AppBreadcrumb";
 import { ThemeToggle } from "../theme/ThemeToggle";
-import LogoutButton from "@/features/auth/components/LogoutButton";
+
 
 const Header: React.FC = () => {
   return (
@@ -14,9 +14,8 @@ const Header: React.FC = () => {
         <Separator orientation="vertical" className="mr-2 h-4" />
         <AppBreadcrumb />
       </div>
-      <div className="me-6 space-x-2">
+      <div className="me-6">
         <ThemeToggle />
-        <LogoutButton />
       </div>
     </header>
   );

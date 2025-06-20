@@ -31,7 +31,8 @@ const useSignupForm = () => {
   });
 
   const onSubmit = async (values: SignupFormValues) => {
-    signUp(values);
+    const result = await signUp(values);
+    if (result) form.reset();
   };
 
   return {

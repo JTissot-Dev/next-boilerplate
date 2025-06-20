@@ -23,6 +23,7 @@ const useSendVerifyEmail = () => {
         },
         onError: () => {
           setLoading(false);
+          toast.error("Une erreur s'est produite lors de l'envoi de l'email. Veuillez réessayer plus tard.");
         },
       },
     );

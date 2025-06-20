@@ -23,12 +23,20 @@ const useSignIn = () => {
       },
       onError: (ctx) => {
         setLoading(false);
-        if (ctx.error.message === "Email not verified") {
-          setError(ctx.error.message);
-        } else {
-          toast.error(
-            "Une erreur s'est produite lors de la connexion. Veuillez réessayer.",
-          );
+        switch (ctx.error.message) {
+          case "Email not verified":
+            setError("Email not verified");
+            break;
+          case "Invalid email or password":
+            toast.error(
+              "Email ou mot de passe invalide. Veuillez réessayer.",
+            );
+            break;
+          default:
+            toast.error(
+              "Une erreur s'est produite. Veuillez réessayer plus tard.",
+            );
+            break;
         }
       },
     });

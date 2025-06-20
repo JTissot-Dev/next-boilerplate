@@ -19,9 +19,9 @@ const useSendResetPasswordEmail = () => {
           setLoading(false);
           toast.success("Un lien de réinitialisation a été envoyé par email.");
         },
-        onError: (ctx) => {
+        onError: () => {
           setLoading(false);
-          console.error("Error sending reset password email:", ctx);
+          toast.error("Une erreur s'est produite lors de l'envoi de l'email. Veuillez réessayer plus tard.");
         },
       },
     );

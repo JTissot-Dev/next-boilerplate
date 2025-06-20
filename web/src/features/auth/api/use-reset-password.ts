@@ -23,7 +23,15 @@ const useResetPassword = () => {
           toast.success("Votre mot de passe a été réinitialisé avec succès.");
         },
         onError: (ctx) => {
-          console.error("Error resetting password:", ctx);
+          setLoading(false);
+          switch (ctx.error.message) {
+            case "invalid token":
+              toast.error("Le lien de réinitialisation du mot de passe est invalide ou a expiré.");
+              break;
+            default:
+              toast.error("Une erreur s'est produite lors de la réinitialisation du mot de passe.");
+              break;
+          }
         },
       },
     );

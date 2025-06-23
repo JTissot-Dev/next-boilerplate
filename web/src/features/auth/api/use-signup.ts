@@ -20,11 +20,18 @@ const useSignUp = () => {
         );
         router.push("/login");
       },
-      onError: () => {
+      onError: (ctx) => {
         setLoading(false);
-        toast.error(
-          "Une erreur s'est produite lors de l'inscription. Veuillez réessayer.",
-        );
+        switch (ctx.error.message) {
+          case "User already exists":
+            toast.error("Un compte utilisateur est déjà associé à cet email.");
+            break;
+          default:
+            toast.error(
+              "Une erreur s'est produite lors de l'inscription. Veuillez vérifier les informations saisies.",
+            );
+            break;
+        }
       },
     });
     return result;

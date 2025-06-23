@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -10,13 +12,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import SignInGitHub from "./SignInGitHub";
+import SignInGoogle from "./SignInGoogle";
+import SignInFacebook from "./SignInFacebook";
 import useLoginForm from "../hooks/use-login-form";
 import LoadingButton from "@/components/common/LoadingButton";
 import { useAuthContext } from "../context";
 
 const LoginForm: React.FC = () => {
   const { form, onSubmit, loading } = useLoginForm();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const { setIsOpenSendResetPasswordDialog } = useAuthContext();
 
   return (
@@ -64,9 +68,30 @@ const LoginForm: React.FC = () => {
                       Mot de passe oublié?
                     </a>
                   </div>
-                  <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
-                  </FormControl>
+                  <div className="relative">
+                    <FormControl>
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="••••••••"
+                        {...field}
+                      />
+                    </FormControl>
+                    {showPassword ? (
+                      <Eye
+                        size={16}
+                        strokeWidth={2}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <EyeOff
+                        strokeWidth={2}
+                        size={16}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )}
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -80,11 +105,14 @@ const LoginForm: React.FC = () => {
               Se connecter
             </LoadingButton>
             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-              <span className="bg-background text-muted-foreground relative z-10 px-2">
+              <span className="bg-card text-muted-foreground relative z-10 px-2">
                 Ou continuez avec
               </span>
             </div>
-            <SignInGitHub />
+            <div className="grid grid-cols-1 gap-4">
+              <SignInGoogle />
+              <SignInFacebook />
+            </div>
           </form>
           <div className="text-center text-sm mt-6">
             Pas encore de compte?{" "}

@@ -1,5 +1,4 @@
 import { Button, buttonVariants } from "../ui/button";
-import { Loader2Icon } from "lucide-react";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -55,6 +54,6 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({
       {textContent}
     </Button>
   );
-};
+}
 
 export default LoadingButton;

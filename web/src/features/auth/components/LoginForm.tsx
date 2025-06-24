@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import PasswordInput from "./PasswordInput";
 import SignInGoogle from "./SignInGoogle";
 import SignInFacebook from "./SignInFacebook";
 import useLoginForm from "../hooks/use-login-form";
@@ -20,7 +21,6 @@ import { useAuthContext } from "../context";
 
 const LoginForm: React.FC = () => {
   const { form, onSubmit, loading } = useLoginForm();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const { setIsOpenSendResetPasswordDialog } = useAuthContext();
 
   return (
@@ -68,30 +68,9 @@ const LoginForm: React.FC = () => {
                       Mot de passe oublié?
                     </a>
                   </div>
-                  <div className="relative">
-                    <FormControl>
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="••••••••"
-                        {...field}
-                      />
-                    </FormControl>
-                    {showPassword ? (
-                      <Eye
-                        size={16}
-                        strokeWidth={2}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-                        onClick={() => setShowPassword(false)}
-                      />
-                    ) : (
-                      <EyeOff
-                        strokeWidth={2}
-                        size={16}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-                        onClick={() => setShowPassword(true)}
-                      />
-                    )}
-                  </div>
+                  <FormControl>
+                    <PasswordInput {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

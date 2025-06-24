@@ -77,7 +77,7 @@ describe('ResetPasswordForm', () => {
 
       const passwordInput = screen.getByLabelText('Nouveau mot de passe');
       expect(passwordInput).toHaveProperty('type', 'password');
-      expect(passwordInput).toHaveProperty('placeholder', '••••••••');
+      expect(passwordInput).toHaveProperty('placeholder', '••••••••••');
     });
   });
 

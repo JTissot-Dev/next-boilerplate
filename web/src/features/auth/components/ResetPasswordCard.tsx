@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import LoadingButton from "@/components/common/LoadingButton";
 import ResetPasswordForm from "./ResetPasswordForm";
 import useResetPasswordForm from "../hooks/use-reset-password-form";
 
@@ -30,14 +31,15 @@ const ResetPasswordCard: React.FC = () => {
         </div>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Button
+        <LoadingButton
           form={formId}
           type="submit"
           className="w-full"
-          disabled={loading}
+          loading={loading}
+          loadingText="Chargement en cours..."
         >
-          {loading ? "Chargement en cours..." : "Valider"}
-        </Button>
+          Valider
+        </LoadingButton>
       </CardFooter>
     </Card>
   );

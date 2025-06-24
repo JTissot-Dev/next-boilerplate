@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
 import {
   Form,
@@ -10,7 +11,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import PasswordInput from "./PasswordInput";
+import PasswordStrengthIndicator from "./PasswordStrenghtIndicator";
 import { ResetPasswordFormValues } from "../hooks/use-reset-password-form";
 
 type ResetPasswordFormProps = {
@@ -32,6 +34,9 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   form,
   onSubmit,
 }) => {
+
+  const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
+
   return (
     <Form {...form}>
       <form
@@ -46,8 +51,21 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
             <FormItem>
               <FormLabel>Nouveau mot de passe</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="••••••••" {...field} />
+                <PasswordInput
+                  {...field}
+                  onFocus={() => {
+                    setIsPasswordFocused(true);
+                  }}
+                  onBlur={() => {
+                    field.onBlur();
+                    setIsPasswordFocused(false);
+                  }}
+                />
               </FormControl>
+              <PasswordStrengthIndicator
+                password={field.value || ""}
+                focus={isPasswordFocused}
+              />
               <FormDescription>
                 Doit contenir au moins 6 caractères.
               </FormDescription>

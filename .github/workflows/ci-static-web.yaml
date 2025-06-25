@@ -1,0 +1,44 @@
+name: Static CI web
+
+on:
+  push:
+    paths:
+      - 'web/**'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: web
+        
+      - name: Check format
+        run: npx prettier .
+        working-directory: web
+  
+  lint:
+    runs-on: ubuntu-latest
+    needs: format
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: web
+
+      - name: Run lint
+        run: npm run lint
+        working-directory: web

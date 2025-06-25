@@ -17,15 +17,9 @@ import { ResetPasswordFormValues } from "../hooks/use-reset-password-form";
 
 type ResetPasswordFormProps = {
   formId: string;
-  form: UseFormReturn<
-    {
-      password: string;
-    },
-    any,
-    {
-      password: string;
-    }
-  >;
+  form: UseFormReturn<{
+    password: string;
+  }>;
   onSubmit: (values: ResetPasswordFormValues) => void;
 };
 

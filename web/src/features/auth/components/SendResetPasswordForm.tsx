@@ -15,15 +15,9 @@ import type { SendResetPasswordFormValues } from "../hooks/use-send-reset-passwo
 
 type SendResetPasswordFormProps = {
   formId: string;
-  form: UseFormReturn<
-    {
-      email: string;
-    },
-    any,
-    {
-      email: string;
-    }
-  >;
+  form: UseFormReturn<{
+    email: string;
+  }>;
   onSubmit: (values: SendResetPasswordFormValues) => void;
   setIsOpenDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 };

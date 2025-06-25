@@ -15,15 +15,9 @@ import type { VerifyEmailFormValues } from "../hooks/use-verify-email-form";
 
 type VerifyEmailFormProps = {
   formId: string;
-  form: UseFormReturn<
-    {
-      email: string;
-    },
-    any,
-    {
-      email: string;
-    }
-  >;
+  form: UseFormReturn<{
+    email: string;
+  }>;
   onSubmit: (values: VerifyEmailFormValues) => void;
   setIsOpenDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 };

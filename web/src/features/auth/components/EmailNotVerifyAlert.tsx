@@ -42,7 +42,6 @@ const EmailNotVerifyAlert: React.FC<EmailNotVerifyAlertProps> = ({
         <VerifyEmailDialog
           isOpenDialog={isOpenDialog}
           setIsOpenDialog={setIsOpenDialog}
-          setShowAlert={setShowAlert}
         />
       </>
     );

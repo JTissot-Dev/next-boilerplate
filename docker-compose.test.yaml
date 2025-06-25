@@ -1,0 +1,35 @@
+name: "my-app-test"
+
+services:
+
+  web:
+    container_name: my-app-web-test
+    build: ./web
+    command: sh -c "npm run prisma:push && npm run prisma:generate && npm run test"
+    ports:
+      - 3001:3000
+    env_file: .env.test
+    networks:
+      - my-app-test-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    container_name: my-app-database-test
+    image: postgres:16
+    env_file: .env.test
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - my-app-test-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+networks:
+  my-app-test-network:
+    driver: bridge

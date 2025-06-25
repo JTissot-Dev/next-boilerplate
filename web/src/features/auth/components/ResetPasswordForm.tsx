@@ -34,7 +34,6 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   form,
   onSubmit,
 }) => {
-
   const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 
   return (

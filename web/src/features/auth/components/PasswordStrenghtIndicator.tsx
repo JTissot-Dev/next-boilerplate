@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { CircleAlert, Check, TriangleAlert } from 'lucide-react';
+import clsx from "clsx";
+import { CircleAlert, Check, Lock } from "lucide-react";
 
 interface PasswordStrengthIndicatorProps {
   password: string;
@@ -16,43 +16,49 @@ interface StrengthResult {
 
 const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps> = ({
   password,
-  focus
+  focus,
 }) => {
-
   const calculateStrength = (pwd: string): StrengthResult => {
-    if (!pwd) return { score: 0, label: '', color: 'bg-muted', width: '0%', feedback: [] };
+    if (!pwd)
+      return {
+        score: 0,
+        label: "",
+        color: "bg-muted",
+        width: "0%",
+        feedback: [],
+      };
 
     let score: number = 0;
-    let feedback: string[] = [];
+    const feedback: string[] = [];
 
     if (pwd.length >= 8) score += 1;
-    else feedback.push('8 caractères minimum');
+    else feedback.push("8 caractères minimum");
 
     if (/[a-z]/.test(pwd)) score += 1;
-    else feedback.push('lettres minuscules');
+    else feedback.push("lettres minuscules");
 
     if (/[A-Z]/.test(pwd)) score += 1;
-    else feedback.push('lettres majuscules');
+    else feedback.push("lettres majuscules");
 
     if (/\d/.test(pwd)) score += 1;
-    else feedback.push('chiffres');
+    else feedback.push("chiffres");
 
     if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pwd)) score += 1;
-    else feedback.push('caractères spéciaux');
+    else feedback.push("caractères spéciaux");
 
     if (pwd.length >= 12) score += 1;
 
-    let strength: Omit<StrengthResult, 'score' | 'feedback'>;
+    let strength: Omit<StrengthResult, "score" | "feedback">;
     if (score <= 1) {
-      strength = { label: 'Très faible', color: 'bg-red-500', width: '20%' };
+      strength = { label: "Très faible", color: "bg-red-500", width: "20%" };
     } else if (score <= 2) {
-      strength = { label: 'Faible', color: 'bg-red-400', width: '40%' };
+      strength = { label: "Faible", color: "bg-red-400", width: "40%" };
     } else if (score <= 3) {
-      strength = { label: 'Moyen', color: 'bg-yellow-500', width: '60%' };
+      strength = { label: "Moyen", color: "bg-yellow-500", width: "60%" };
     } else if (score <= 4) {
-      strength = { label: 'Fort', color: 'bg-green-500', width: '80%' };
+      strength = { label: "Fort", color: "bg-green-500", width: "80%" };
     } else {
-      strength = { label: 'Très fort', color: 'bg-green-600', width: '100%' };
+      strength = { label: "Très fort", color: "bg-green-600", width: "100%" };
     }
 
     return { ...strength, score, feedback };
@@ -66,16 +72,27 @@ const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps> = ({
         <div className="w-[55%] bg-gray-300 rounded-full h-1 overflow-hidden">
           <div
             className={`h-full transition-all duration-300 ease-out ${strength.color}`}
-            style={{ width: password ? strength.width : '0%' }}
+            style={{ width: password ? strength.width : "0%" }}
           ></div>
         </div>
         <div className="flex justify-between items-center leading-none mb-0.5 space-x-1.5">
-          {strength.label === "Très fort" && <Check size={16} className="text-green-600" strokeWidth={3} />}
-          <span className={`text-[12px] font-semibold ${strength.score === 0 ? 'text-muted-foreground' : strength.score > 0 && strength.score <= 2 ? 'text-red-600' :
-            strength.score <= 3 ? 'text-yellow-600' :
-              'text-green-600'
-            }`}>
-            {strength.label || 'Robustesse'}
+          {!strength.label && (
+            <Lock size={14} className="text-muted-foreground" />
+          )}
+          {strength.label === "Très fort" && (
+            <Check size={16} className="text-green-600" strokeWidth={3} />
+          )}
+          <span
+            className={`text-[12px] font-semibold ${strength.score === 0
+                ? "text-muted-foreground"
+                : strength.score > 0 && strength.score <= 2
+                  ? "text-red-600"
+                  : strength.score <= 3
+                    ? "text-yellow-600"
+                    : "text-green-600"
+              }`}
+          >
+            {strength.label || "Robustesse"}
           </span>
         </div>
       </div>
@@ -90,7 +107,7 @@ const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps> = ({
             "border",
           )}
         >
-          <div className='flex items-center space-x-2 mb-2'>
+          <div className="flex items-center space-x-2 mb-2">
             <CircleAlert size={15} />
             <p>Améliorez votre mot de passe avec :</p>
           </div>

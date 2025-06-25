@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import type { User } from "better-auth";
@@ -19,24 +19,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import useSignOut from "@/features/auth/api/use-signout";
 
-
-export function NavUser({
-  user,
-}: {
-  user: User
-}) {
-
-  const { isMobile } = useSidebar()
+export function NavUser({ user }: { user: User }) {
+  const { isMobile } = useSidebar();
   const [isOpenLogoutDialog, setIsOpenLogoutDialog] = useState<boolean>(false);
   const { signOut } = useSignOut();
 
@@ -115,9 +109,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => setIsOpenLogoutDialog(true)}
-            >
+            <DropdownMenuItem onClick={() => setIsOpenLogoutDialog(true)}>
               <LogOut />
               Se déconnecter
             </DropdownMenuItem>
@@ -132,5 +124,5 @@ export function NavUser({
         onConfirm={signOut}
       />
     </SidebarMenu>
-  )
+  );
 }

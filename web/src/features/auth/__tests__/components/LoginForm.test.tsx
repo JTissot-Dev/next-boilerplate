@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import LoginForm from "../../components/LoginForm";
 import { useForm } from "react-hook-form";
 
-
 const mockOnSubmit = vi.fn();
 
 let mockHandleSubmit = vi.fn((onValid) => (e: any) => {

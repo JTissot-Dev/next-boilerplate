@@ -26,10 +26,14 @@ const useResetPassword = () => {
           setLoading(false);
           switch (ctx.error.message) {
             case "invalid token":
-              toast.error("Le lien de réinitialisation du mot de passe est invalide ou a expiré.");
+              toast.error(
+                "Le lien de réinitialisation du mot de passe est invalide ou a expiré.",
+              );
               break;
             default:
-              toast.error("Une erreur s'est produite lors de la réinitialisation du mot de passe.");
+              toast.error(
+                "Une erreur s'est produite lors de la réinitialisation du mot de passe.",
+              );
               break;
           }
         },

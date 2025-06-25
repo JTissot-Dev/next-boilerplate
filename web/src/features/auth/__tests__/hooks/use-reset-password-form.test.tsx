@@ -1,9 +1,8 @@
-import { renderHook } from '@testing-library/react';
-import { useSearchParams } from 'next/navigation';
-import type { ReadonlyURLSearchParams } from 'next/navigation';
-import useResetPassword from '../../api/use-reset-password';
-import useResetPasswordForm from '../../hooks/use-reset-password-form';
-
+import { renderHook } from "@testing-library/react";
+import { useSearchParams } from "next/navigation";
+import type { ReadonlyURLSearchParams } from "next/navigation";
+import useResetPassword from "../../api/use-reset-password";
+import useResetPasswordForm from "../../hooks/use-reset-password-form";
 
 vi.mock("next/navigation", () => {
   return {
@@ -12,7 +11,7 @@ vi.mock("next/navigation", () => {
   };
 });
 
-vi.mock('../../api/use-reset-password', () => ({
+vi.mock("../../api/use-reset-password", () => ({
   __esModule: true,
   default: vi.fn(),
 }));
@@ -20,13 +19,12 @@ vi.mock('../../api/use-reset-password', () => ({
 const useSearchParamsMock = vi.mocked(useSearchParams);
 const useResetPasswordMock = vi.mocked(useResetPassword);
 
-describe('useResetPasswordForm', () => {
+describe("useResetPasswordForm", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-  })
+  });
 
-  it('should initialize form with default values', () => {
-
+  it("should initialize form with default values", () => {
     useSearchParamsMock.mockReturnValue({
       get: vi.fn().mockReturnValue(null),
     } as unknown as ReadonlyURLSearchParams);
@@ -39,10 +37,10 @@ describe('useResetPasswordForm', () => {
     const { result } = renderHook(() => useResetPasswordForm());
     const { form } = result.current;
 
-    expect(form.getValues()).toEqual({ password: '' });
+    expect(form.getValues()).toEqual({ password: "" });
   });
 
-  it('should reset form after successful submission', async () => {
+  it("should reset form after successful submission", async () => {
     const mockResetPassword = vi.fn().mockResolvedValue({ error: null });
     useResetPasswordMock.mockReturnValue({
       resetPassword: mockResetPassword,
@@ -51,10 +49,10 @@ describe('useResetPasswordForm', () => {
     const { result } = renderHook(() => useResetPasswordForm());
     const { form } = result.current;
 
-    expect(form.getValues()).toEqual({ password: '' });
+    expect(form.getValues()).toEqual({ password: "" });
   });
 
-  it('should return loading state when useSignIn return loading', () => {
+  it("should return loading state when useSignIn return loading", () => {
     useResetPasswordMock.mockReturnValue({
       resetPassword: vi.fn(),
       loading: true,

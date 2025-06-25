@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import PasswordInput from "../../components/PasswordInput";
 
-
 describe("PasswordInput", () => {
   it("renders correctly with default props", () => {
     render(<PasswordInput />);

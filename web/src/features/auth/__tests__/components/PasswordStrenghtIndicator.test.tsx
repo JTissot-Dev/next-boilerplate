@@ -97,5 +97,4 @@ describe("PasswordStrengthIndicator", () => {
     expect(strengthText).toBeInTheDocument();
     expect(passwordFeedback).not.toBeInTheDocument();
   });
-
 });

@@ -10,7 +10,8 @@ export default function SignupPage() {
         </LoginCard>
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4 mt-4">
           En cliquant sur « Continuer », vous acceptez nos{" "}
-          <a href="#">Conditions d'utilisation</a> et notre <a href="#">Politique de confidentialité</a>.
+          <a href="#">Conditions d&apos;utilisation</a> et notre{" "}
+          <a href="#">Politique de confidentialité</a>.
         </div>
       </div>
     </div>

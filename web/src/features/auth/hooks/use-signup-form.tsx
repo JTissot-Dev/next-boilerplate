@@ -5,11 +5,9 @@ import useSignUp from "../api/use-signup";
 
 // Schéma de validation Zod
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(6, {
-      message: "Le nom d'utilisateur doit contenir au moin 6 caractères",
-    }),
+  name: z.string().min(6, {
+    message: "Le nom d'utilisateur doit contenir au moin 6 caractères",
+  }),
   email: z.string().email({ message: "Email invalide" }),
   password: z
     .string()

@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import LoadingButton from "@/components/common/LoadingButton";
 import ResetPasswordForm from "./ResetPasswordForm";
 import useResetPasswordForm from "../hooks/use-reset-password-form";

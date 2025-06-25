@@ -41,8 +41,8 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
       </a>
     </div>
     <p style={{ fontSize: "14px", color: "#888", textAlign: "center" }}>
-      Si vous n&apos;arrivez pas à cliquer sur le bouton, copiez et collez ce lien
-      dans votre navigateur :
+      Si vous n&apos;arrivez pas à cliquer sur le bouton, copiez et collez ce
+      lien dans votre navigateur :
     </p>
     <p
       style={{

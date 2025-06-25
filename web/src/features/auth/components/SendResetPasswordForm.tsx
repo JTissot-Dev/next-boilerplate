@@ -34,18 +34,15 @@ const SendResetPasswordForm: React.FC<SendResetPasswordFormProps> = ({
   onSubmit,
   setIsOpenDialog,
 }) => {
-
   return (
     <Form {...form}>
       <form
         data-testid={formId}
         id={formId}
-        onSubmit={
-          form.handleSubmit((values) => {
-            onSubmit(values);
-            if (setIsOpenDialog) setIsOpenDialog(false);
-          })
-        }
+        onSubmit={form.handleSubmit((values) => {
+          onSubmit(values);
+          if (setIsOpenDialog) setIsOpenDialog(false);
+        })}
       >
         <FormField
           control={form.control}

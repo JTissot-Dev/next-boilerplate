@@ -96,9 +96,9 @@ const SignupForm: React.FC = () => {
         </LoadingButton>
       </form>
       <div className="text-center text-sm mt-6">
-        Already have an account?{" "}
+        Vous avez déjà un compte?{" "}
         <Link href="/login" className="underline underline-offset-4">
-          login
+          Se connecter
         </Link>
       </div>
     </Form>

@@ -28,9 +28,7 @@ const useSignIn = () => {
             setError("Email not verified");
             break;
           case "Invalid email or password":
-            toast.error(
-              "Email ou mot de passe invalide. Veuillez réessayer.",
-            );
+            toast.error("Email ou mot de passe invalide. Veuillez réessayer.");
             break;
           default:
             toast.error(

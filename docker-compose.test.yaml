@@ -8,7 +8,16 @@ services:
     command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run dev"
     expose:
       - 3000
-    env_file: .env.test
+    environnement:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      FACEBOOK_CLIENT_ID: ${{ secrets.FACEBOOK_CLIENT_ID }}
+      FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      PLAYWRITE_BASE_URL: ${{ secrets.PLAYWRITE_BASE_URL }}
     networks:
       - my-app-test-network
     depends_on:
@@ -28,7 +37,8 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.e2e
-    env_file: .env.test
+    environnement:
+      PLAYWRITE_BASE_URL: ${{ secrets.PLAYWRITE_BASE_URL }}
     networks:
       - my-app-test-network
     depends_on:
@@ -40,7 +50,12 @@ services:
   database:
     container_name: my-app-database-test
     image: postgres:16
-    env_file: .env.test
+    environment:
+      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
     restart: always
     ports:
       - 5432:5432

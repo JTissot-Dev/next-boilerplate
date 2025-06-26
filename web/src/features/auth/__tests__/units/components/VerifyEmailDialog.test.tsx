@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import VerifyEmailDialog from "../../components/VerifyEmailDialog";
+import VerifyEmailDialog from "@/features/auth/components/VerifyEmailDialog";
 
 let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
   e.preventDefault();
@@ -10,7 +10,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
 const mockOnSubmit = vi.fn();
 let mockLoading = false;
 
-vi.mock("../../hooks/use-verify-email-form", () => {
+vi.mock("@/features/auth/hooks/use-verify-email-form", () => {
   return {
     __esModule: true,
     default: () => ({

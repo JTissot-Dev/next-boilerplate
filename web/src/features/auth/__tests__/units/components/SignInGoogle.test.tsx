@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SignInGoogle from "../../components/SignInGoogle";
-import useSignInGoogle from "../../api/use-signin-google";
+import SignInGoogle from "@/features/auth/components/SignInGoogle";
+import useSignInGoogle from "@/features/auth/api/use-signin-google";
 
-vi.mock("../../api/use-signin-google", () => ({
+vi.mock("@/features/auth/api/use-signin-google", () => ({
   __esModule: true,
   default: vi.fn(),
 }));

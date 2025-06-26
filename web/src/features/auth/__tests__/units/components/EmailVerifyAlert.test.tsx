@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import EmailVerifyAlert from "../../components/EmailVerifyAlert";
+import EmailVerifyAlert from "@/features/auth/components/EmailVerifyAlert";
 
 describe("EmailVerifyAlert", () => {
   beforeEach(() => {

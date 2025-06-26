@@ -1,7 +1,6 @@
-import SendResetPasswordDialog from "../../components/SendResetPasswordDialog";
+import SendResetPasswordDialog from "@/features/auth/components/SendResetPasswordDialog";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import useSendResetPasswordForm from "../../hooks/use-send-reset-password-form";
 
 let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
   e.preventDefault();
@@ -11,7 +10,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
 const mockOnSubmit = vi.fn();
 let mockLoading = false;
 
-vi.mock("../../hooks/use-send-reset-password-form", () => {
+vi.mock("@/features/auth/hooks/use-send-reset-password-form", () => {
   return {
     __esModule: true,
     default: () => ({

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import SignupForm from "../../components/SignupForm";
+import SignupForm from "@/features/auth/components/SignupForm";
 
 let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
   e.preventDefault();
@@ -14,7 +14,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
 const mockOnSubmit = vi.fn();
 let mockLoading = false;
 
-vi.mock("../../hooks/use-signup-form", () => {
+vi.mock("@/features/auth/hooks/use-signup-form", () => {
   return {
     __esModule: true,
     default: () => ({

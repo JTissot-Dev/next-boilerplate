@@ -19,5 +19,8 @@ format:
 lint:
 	npm run lint
 
-test:
-	docker compose -f docker-compose.test.yaml up --build
+test-dev-e2e:
+	docker compose -f docker-compose.test.yaml up --build --detach database web
+
+test-exec-e2e:
+	docker compose -f docker-compose.test.yaml up --build --abort-on-container-exit

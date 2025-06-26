@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { describe, it, expect, vi, beforeEach, type Mock } from "vitest";
-import ResetPasswordForm from "../../components/ResetPasswordForm";
-import { ResetPasswordFormValues } from "../../hooks/use-reset-password-form";
+import ResetPasswordForm from "@/features/auth/components/ResetPasswordForm";
+import { ResetPasswordFormValues } from "@/features/auth/hooks/use-reset-password-form";
 
-vi.mock("../api/use-reset-password", () => ({
+vi.mock("@/features/auth/api/use-reset-password", () => ({
   default: vi.fn(() => ({
     resetPassword: vi.fn(),
     loading: false,

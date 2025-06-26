@@ -3,16 +3,38 @@ name: "my-app-test"
 services:
 
   web:
-    container_name: my-app-web-test
+    container_name: my-app-web-test-dev
     build: ./web
-    command: sh -c "npm run prisma:push && npm run prisma:generate && npm run test"
-    ports:
-      - 3001:3000
+    command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run dev"
+    expose:
+      - 3000
     env_file: .env.test
     networks:
       - my-app-test-network
     depends_on:
       database:
+        condition: service_healthy
+    volumes:
+      - ./web/src:/app/src
+    healthcheck:
+      test: 'curl --fail http://localhost:3000 || exit 1'
+      interval: 2s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  web-test-e2e:
+    container_name: my-app-web-test-e2e-exec
+    build:
+      context: ./web
+      dockerfile: Dockerfile.e2e
+    env_file: .env.test
+    networks:
+      - my-app-test-network
+    depends_on:
+      database:
+        condition: service_healthy
+      web:
         condition: service_healthy
 
   database:

@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
-import useSignUp from "../../api/use-signup";
-import useSignupForm from "../../hooks/use-signup-form";
+import useSignUp from "@/features/auth/api/use-signup";
+import useSignupForm from "@/features/auth/hooks/use-signup-form";
 
-vi.mock("../../api/use-signup", () => ({
+vi.mock("@/features/auth/api/use-signup", () => ({
   __esModule: true,
   default: vi.fn(),
 }));

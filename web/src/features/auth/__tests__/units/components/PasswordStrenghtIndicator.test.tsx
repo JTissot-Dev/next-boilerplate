@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PasswordStrengthIndicator from "../../components/PasswordStrenghtIndicator";
+import PasswordStrengthIndicator from "@/features/auth/components/PasswordStrenghtIndicator";
 
 describe("PasswordStrengthIndicator", () => {
   it("renders default password strenght bar without focus", () => {

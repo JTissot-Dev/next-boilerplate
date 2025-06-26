@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "@/features/auth/components/LoginForm";
 import { useForm } from "react-hook-form";
 
 const mockOnSubmit = vi.fn();
@@ -10,7 +10,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
   onValid({ email: "test@example.com", password: "testPassword" });
 });
 
-vi.mock("../../hooks/use-login-form", () => {
+vi.mock("@/features/auth/hooks/use-login-form", () => {
   return {
     __esModule: true,
     default: () => ({

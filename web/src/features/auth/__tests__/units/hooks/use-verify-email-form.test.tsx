@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
-import useSendVerifyEmail from "../../api/use-send-verify-email";
-import useVerifyEmailForm from "../../hooks/use-verify-email-form";
+import useSendVerifyEmail from "@/features/auth/api/use-send-verify-email";
+import useVerifyEmailForm from "@/features/auth/hooks/use-verify-email-form";
 
-vi.mock("../../api/use-send-verify-email", () => ({
+vi.mock("@/features/auth/api/use-send-verify-email", () => ({
   __esModule: true,
   default: vi.fn(),
 }));

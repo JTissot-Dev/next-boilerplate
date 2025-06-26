@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import LoginCard from "../../components/LoginCard";
+import LoginCard from "@/features/auth/components/LoginCard";
 import React from "react";
 
 // Mock dependencies
-vi.mock("../../context", () => ({
+vi.mock("@/features/auth/context", () => ({
   useAuthContext: () => ({
     showEmailNotVerifyAlert: false,
     setEmailNotVerifyAlert: vi.fn(),
@@ -15,7 +15,7 @@ vi.mock("../../context", () => ({
   }),
 }));
 
-vi.mock("../../components/EmailNotVerifyAlert", () => ({
+vi.mock("@/features/auth/components/EmailNotVerifyAlert", () => ({
   __esModule: true,
   default: ({ showAlert }: { showAlert: boolean }) => (
     <div data-testid="email-not-verify-alert">
@@ -24,14 +24,14 @@ vi.mock("../../components/EmailNotVerifyAlert", () => ({
   ),
 }));
 
-vi.mock("../../components/EmailVerifyAlert", () => ({
+vi.mock("@/features/auth/components/EmailVerifyAlert", () => ({
   __esModule: true,
   default: ({ showAlert }: { showAlert: boolean }) => (
     <div data-testid="email-verify-alert">{showAlert ? "Show" : "Hide"}</div>
   ),
 }));
 
-vi.mock("../../components/SendResetPasswordDialog", () => ({
+vi.mock("@/features/auth/components/SendResetPasswordDialog", () => ({
   __esModule: true,
   default: ({ isOpenDialog }: { isOpenDialog: boolean }) => (
     <div data-testid="send-reset-password-dialog">

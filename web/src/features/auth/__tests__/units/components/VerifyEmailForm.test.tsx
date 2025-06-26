@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import VerifyEmailForm from "../../components/VerifyEmailForm";
-import useVerifyEmailForm from "../../hooks/use-verify-email-form";
+import VerifyEmailForm from "@/features/auth/components/VerifyEmailForm";
+import useVerifyEmailForm from "@/features/auth/hooks/use-verify-email-form";
 
 const mockOnSubmit = vi.fn();
 const mockSetIsOpenDialog = vi.fn();

@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import { useSearchParams } from "next/navigation";
 import type { ReadonlyURLSearchParams } from "next/navigation";
-import useSendResetPasswordEmail from "../../api/use-send-reset-password-email";
-import useSendResetPasswordForm from "../../hooks/use-send-reset-password-form";
+import useResetPassword from "@/features/auth/api/use-reset-password";
+import useResetPasswordForm from "@/features/auth/hooks/use-reset-password-form";
 
 vi.mock("next/navigation", () => {
   return {
@@ -11,15 +11,15 @@ vi.mock("next/navigation", () => {
   };
 });
 
-vi.mock("../../api/use-send-reset-password-email", () => ({
+vi.mock("@/features/auth/api/use-reset-password", () => ({
   __esModule: true,
   default: vi.fn(),
 }));
 
 const useSearchParamsMock = vi.mocked(useSearchParams);
-const useSendResetPasswordMock = vi.mocked(useSendResetPasswordEmail);
+const useResetPasswordMock = vi.mocked(useResetPassword);
 
-describe("useSendResetPasswordForm", () => {
+describe("useResetPasswordForm", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -29,36 +29,36 @@ describe("useSendResetPasswordForm", () => {
       get: vi.fn().mockReturnValue(null),
     } as unknown as ReadonlyURLSearchParams);
 
-    useSendResetPasswordMock.mockReturnValue({
-      sendResetPasswordEmail: vi.fn(),
+    useResetPasswordMock.mockReturnValue({
+      resetPassword: vi.fn(),
       loading: false,
     });
 
-    const { result } = renderHook(() => useSendResetPasswordForm());
+    const { result } = renderHook(() => useResetPasswordForm());
     const { form } = result.current;
 
-    expect(form.getValues()).toEqual({ email: "" });
+    expect(form.getValues()).toEqual({ password: "" });
   });
 
   it("should reset form after successful submission", async () => {
-    const mockSendResetPassword = vi.fn().mockResolvedValue({ data: "test" });
-    useSendResetPasswordMock.mockReturnValue({
-      sendResetPasswordEmail: mockSendResetPassword,
+    const mockResetPassword = vi.fn().mockResolvedValue({ error: null });
+    useResetPasswordMock.mockReturnValue({
+      resetPassword: mockResetPassword,
       loading: false,
     });
-    const { result } = renderHook(() => useSendResetPasswordForm());
+    const { result } = renderHook(() => useResetPasswordForm());
     const { form } = result.current;
 
-    expect(form.getValues()).toEqual({ email: "" });
+    expect(form.getValues()).toEqual({ password: "" });
   });
 
   it("should return loading state when useSignIn return loading", () => {
-    useSendResetPasswordMock.mockReturnValue({
-      sendResetPasswordEmail: vi.fn(),
+    useResetPasswordMock.mockReturnValue({
+      resetPassword: vi.fn(),
       loading: true,
     });
 
-    const { result } = renderHook(() => useSendResetPasswordForm());
+    const { result } = renderHook(() => useResetPasswordForm());
     const { loading } = result.current;
     expect(loading).toBe(true);
   });

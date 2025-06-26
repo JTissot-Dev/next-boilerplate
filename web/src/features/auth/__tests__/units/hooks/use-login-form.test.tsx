@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
-import useLoginForm from "../../hooks/use-login-form";
-import useSignIn from "../../api/use-signin";
+import useLoginForm from "@/features/auth/hooks/use-login-form";
+import useSignIn from "@/features/auth/api/use-signin";
 import { useSearchParams } from "next/navigation";
-import { useAuthContext } from "../../context";
+import { useAuthContext } from "@/features/auth/context";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 
 const mockContextValues = {
@@ -21,12 +21,12 @@ vi.mock("next/navigation", () => {
   };
 });
 
-vi.mock("../../api/use-signin", () => ({
+vi.mock("@/features/auth/api/use-signin", () => ({
   __esModule: true,
   default: vi.fn(),
 }));
 
-vi.mock("../../context", () => ({
+vi.mock("@/features/auth/context", () => ({
   useAuthContext: vi.fn(() => mockContextValues),
 }));
 

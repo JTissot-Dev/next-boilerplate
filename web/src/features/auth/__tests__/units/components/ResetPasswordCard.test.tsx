@@ -1,4 +1,4 @@
-import ResetPasswordCard from "../../components/ResetPasswordCard";
+import ResetPasswordCard from "@/features/auth/components/ResetPasswordCard";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
 
@@ -11,7 +11,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
 
 let mockLoading = false;
 
-vi.mock("../../hooks/use-reset-password-form", () => {
+vi.mock("@/features/auth/hooks/use-reset-password-form", () => {
   return {
     __esModule: true,
     default: () => ({

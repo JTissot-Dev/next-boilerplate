@@ -1,4 +1,4 @@
-import SignupCard from "../../components/SignupCard";
+import SignupCard from "@/features/auth/components/SignupCard";
 import { render, screen } from "@testing-library/react";
 
 describe("SignupCard", () => {

@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SignInFacebook from "../../components/SignInFacebook";
-import useSignInFacebook from "../../api/use-signin-facebook";
+import SignInFacebook from "@/features/auth/components/SignInFacebook";
+import useSignInFacebook from "@/features/auth/api/use-signin-facebook";
 
-vi.mock("../../api/use-signin-facebook", () => ({
+vi.mock("@/features/auth/api/use-signin-facebook", () => ({
   __esModule: true,
   default: vi.fn(),
 }));

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SendResetPasswordForm from "../../components/SendResetPasswordForm";
-import useSendResetPasswordForm from "../../hooks/use-send-reset-password-form";
+import SendResetPasswordForm from "@/features/auth/components/SendResetPasswordForm";
+import useSendResetPasswordForm from "@/features/auth/hooks/use-send-reset-password-form";
 
 const mockOnSubmit = vi.fn();
 const mockSetIsOpenDialog = vi.fn();

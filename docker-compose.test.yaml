@@ -9,15 +9,15 @@ services:
     expose:
       - 3000
     environment:
-      DATABASE_URL: ${ secrets.DATABASE_URL }
-      BETTER_AUTH_SECRET: ${ secrets.BETTER_AUTH_SECRET }
-      BETTER_AUTH_URL: ${ secrets.BETTER_AUTH_URL }
-      GOOGLE_CLIENT_ID: ${ secrets.GOOGLE_CLIENT_ID }
-      GOOGLE_CLIENT_SECRET: ${ secrets.GOOGLE_CLIENT_SECRET }
-      FACEBOOK_CLIENT_ID: ${ secrets.FACEBOOK_CLIENT_ID }
-      FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }
-      RESEND_API_KEY: ${ secrets.RESEND_API_KEY }
-      PLAYWRITE_BASE_URL: ${ secrets.PLAYWRITE_BASE_URL }
+      DATABASE_URL: ${DATABASE_URL}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      FACEBOOK_CLIENT_ID: ${FACEBOOK_CLIENT_ID}
+      FACEBOOK_CLIENT_SECRET: ${{FACEBOOK_CLIENT_SECRET}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      PLAYWRITE_BASE_URL: ${PLAYWRITE_BASE_URL}
     networks:
       - my-app-test-network
     depends_on:
@@ -38,7 +38,7 @@ services:
       context: ./web
       dockerfile: Dockerfile.e2e
     environment:
-      PLAYWRITE_BASE_URL: ${ secrets.PLAYWRITE_BASE_URL }
+      PLAYWRITE_BASE_URL: ${PLAYWRITE_BASE_URL}
     networks:
       - my-app-test-network
     depends_on:
@@ -51,11 +51,11 @@ services:
     container_name: my-app-database-test
     image: postgres:16
     environment:
-      POSTGRES_HOST: ${ secrets.POSTGRES_HOST }
-      POSTGRES_PORT: ${ secrets.POSTGRES_PORT }
-      POSTGRES_USER: ${ secrets.POSTGRES_USER }
-      POSTGRES_DB: ${ secrets.POSTGRES_DB }
-      POSTGRES_PASSWORD: ${ secrets.POSTGRES_PASSWORD }
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
     ports:
       - 5432:5432

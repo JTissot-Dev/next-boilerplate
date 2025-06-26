@@ -8,7 +8,7 @@ services:
     command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run dev"
     expose:
       - 3000
-    environnement:
+    environment:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
       BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
@@ -37,7 +37,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.e2e
-    environnement:
+    environment:
       PLAYWRITE_BASE_URL: ${{ secrets.PLAYWRITE_BASE_URL }}
     networks:
       - my-app-test-network

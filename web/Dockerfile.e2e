@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/playwright:v1.53.0-noble
 WORKDIR /app
 COPY . .
-RUN npm i
+RUN npm ci --omit=dev
 CMD ["npm", "run", "test:e2e"]

@@ -37,6 +37,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile.e2e
+    ipc: host
     environment:
       PLAYWRITE_BASE_URL: ${PLAYWRITE_BASE_URL}
     networks:

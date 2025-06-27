@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   Form,
@@ -13,9 +14,12 @@ import {
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/common/LoadingButton";
 import useSignupForm from "../hooks/use-signup-form";
+import PasswordInput from "./PasswordInput";
+import PasswordStrengthIndicator from "./PasswordStrenghtIndicator";
 
 const SignupForm: React.FC = () => {
   const { form, onSubmit, loading } = useSignupForm();
+  const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 
   return (
     <Form {...form}>
@@ -63,11 +67,21 @@ const SignupForm: React.FC = () => {
             <FormItem>
               <FormLabel>Mot de passe</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="••••••••" {...field} />
+                <PasswordInput
+                  {...field}
+                  onFocus={() => {
+                    setIsPasswordFocused(true);
+                  }}
+                  onBlur={() => {
+                    field.onBlur();
+                    setIsPasswordFocused(false);
+                  }}
+                />
               </FormControl>
-              <FormDescription>
-                Doit contenir au moins 6 caractères.
-              </FormDescription>
+              <PasswordStrengthIndicator
+                password={field.value || ""}
+                focus={isPasswordFocused}
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -82,9 +96,9 @@ const SignupForm: React.FC = () => {
         </LoadingButton>
       </form>
       <div className="text-center text-sm mt-6">
-        Already have an account?{" "}
+        Vous avez déjà un compte?{" "}
         <Link href="/login" className="underline underline-offset-4">
-          login
+          Se connecter
         </Link>
       </div>
     </Form>

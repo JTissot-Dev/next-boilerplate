@@ -1,7 +1,6 @@
-import ResetPasswordCard from "../../components/ResetPasswordCard";
+import ResetPasswordCard from "@/features/auth/components/ResetPasswordCard";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-
 
 const mockOnSubmit = vi.fn();
 
@@ -12,7 +11,7 @@ let mockHandleSubmit = vi.fn((onValid) => (e: any) => {
 
 let mockLoading = false;
 
-vi.mock("../../hooks/use-reset-password-form", () => {
+vi.mock("@/features/auth/hooks/use-reset-password-form", () => {
   return {
     __esModule: true,
     default: () => ({
@@ -35,7 +34,7 @@ describe("ResetPasswordCard", () => {
     render(<ResetPasswordCard />);
     const title = screen.getByText("Réinitialiser votre mot de passe");
     const description = screen.getByText(
-      "Veuillez saisir votre nouveau mot de passe pour continuer."
+      "Veuillez saisir votre nouveau mot de passe pour continuer.",
     );
     expect(title).toBeInTheDocument();
     expect(description).toBeInTheDocument();
@@ -70,7 +69,9 @@ describe("ResetPasswordCard", () => {
   it("shows loading state when loading is true", () => {
     mockLoading = true;
     render(<ResetPasswordCard />);
-    const button = screen.getByRole("button", { name: "Chargement en cours..." });
+    const button = screen.getByRole("button", {
+      name: "Chargement en cours...",
+    });
     expect(button).toBeInTheDocument();
     expect(button).toBeDisabled();
   });

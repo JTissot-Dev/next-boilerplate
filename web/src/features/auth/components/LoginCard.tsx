@@ -38,8 +38,12 @@ const LoginCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Image
               src="/auth.jpg"
               alt="Image"
-              width="600"
-              height="1000"
+              width={600}
+              height={1000}
+              priority={true}
+              quality={80}
+              placeholder="blur"
+              blurDataURL="/auth-lr.jpg"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.8] z-50"
             />
           </div>

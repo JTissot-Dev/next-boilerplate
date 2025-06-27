@@ -12,3 +12,15 @@ better-auth-generate:
 
 db-seed:
 	docker exec -it my-app-web-dev npm run prisma:seed
+
+format:
+	npm run format
+	
+lint:
+	npm run lint
+
+test-dev-e2e:
+	docker compose -f docker-compose.test.yaml up --build --detach database web
+
+test-exec-e2e:
+	docker compose -f docker-compose.test.yaml up --build --abort-on-container-exit

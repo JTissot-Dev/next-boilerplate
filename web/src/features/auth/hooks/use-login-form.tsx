@@ -32,7 +32,8 @@ const useLoginForm = () => {
   });
 
   const onSubmit = async (values: LoginFormValues) => {
-    signIn(values);
+    const result = await signIn(values);
+    if (result?.data?.token) form.reset();
   };
 
   useEffect(() => {

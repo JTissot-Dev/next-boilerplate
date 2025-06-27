@@ -26,7 +26,8 @@ const useResetPasswordForm = () => {
   });
 
   const onSubmit = async (values: ResetPasswordFormValues) => {
-    resetPassword(values.password, token);
+    const result = await resetPassword(values.password, token);
+    if (!result?.error) form.reset();
   };
 
   return {

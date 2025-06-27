@@ -15,15 +15,9 @@ import type { VerifyEmailFormValues } from "../hooks/use-verify-email-form";
 
 type VerifyEmailFormProps = {
   formId: string;
-  form: UseFormReturn<
-    {
-      email: string;
-    },
-    any,
-    {
-      email: string;
-    }
-  >;
+  form: UseFormReturn<{
+    email: string;
+  }>;
   onSubmit: (values: VerifyEmailFormValues) => void;
   setIsOpenDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -33,18 +27,15 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
   onSubmit,
   setIsOpenDialog,
 }) => {
-
   return (
     <Form {...form}>
       <form
         id={formId}
         data-testid={formId}
-        onSubmit={
-          form.handleSubmit((values) => {
-            onSubmit(values);
-            if (setIsOpenDialog) setIsOpenDialog(false);
-          })
-        }
+        onSubmit={form.handleSubmit((values) => {
+          onSubmit(values);
+          if (setIsOpenDialog) setIsOpenDialog(false);
+        })}
       >
         <FormField
           control={form.control}
@@ -55,7 +46,9 @@ const VerifyEmailForm: React.FC<VerifyEmailFormProps> = ({
               <FormControl>
                 <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
-              <FormDescription>L&apos;adresse email à vérifier.</FormDescription>
+              <FormDescription>
+                L&apos;adresse email à vérifier.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -20,7 +20,8 @@ const useVerifyEmailForm = () => {
   });
 
   const onSubmit = async (values: VerifyEmailFormValues) => {
-    sendVerifyEmail(values.email);
+    const result = await sendVerifyEmail(values.email);
+    if (result) form.reset();
   };
 
   return {

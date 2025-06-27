@@ -20,7 +20,8 @@ const useSendResetPasswordForm = () => {
   });
 
   const onSubmit = async (values: SendResetPasswordFormValues) => {
-    sendResetPasswordEmail(values.email);
+    const result = await sendResetPasswordEmail(values.email);
+    if (result) form.reset();
   };
 
   return {

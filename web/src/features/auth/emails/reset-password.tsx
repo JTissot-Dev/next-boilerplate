@@ -41,8 +41,8 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({
       </a>
     </div>
     <p style={{ fontSize: "14px", color: "#888", textAlign: "center" }}>
-      Si vous n&apos;avez pas demandé cette réinitialisation, vous pouvez ignorer cet
-      email.
+      Si vous n&apos;avez pas demandé cette réinitialisation, vous pouvez
+      ignorer cet email.
     </p>
     <p style={{ fontSize: "14px", color: "#888", textAlign: "center" }}>
       Ce lien expire dans 24 heures.

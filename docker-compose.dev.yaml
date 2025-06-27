@@ -7,7 +7,7 @@ services:
     build: ./web
     command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run dev"
     ports:
-      - "3000:3000"
+      - 3000:3000
     env_file: .env.dev
     networks:
       - my-app-dev-network

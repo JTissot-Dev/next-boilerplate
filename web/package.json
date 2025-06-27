@@ -8,6 +8,7 @@
     "start": "next start",
     "test": "vitest",
     "test:e2e": "npx playwright test",
+    "test:e2e:local": "dotenv -e ../.env.e2e.local -- npx playwright test --ui",
     "lint": "next lint",
     "format": "prettier --write .",
     "prisma:generate": "dotenv -e .env.dev -- npx prisma generate",

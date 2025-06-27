@@ -9,6 +9,11 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./vitest.setup.ts",
     globals: true,
+    include: ['**/__tests__/units/**/*.test.{ts,tsx}'],
+    exclude: [
+      '**/*.spec.ts',
+      '**/node_modules/**'
+    ]
   },
   resolve: {
     alias: {

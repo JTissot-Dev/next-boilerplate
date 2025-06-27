@@ -1,5 +1,4 @@
-# FROM node:24-alpine
-FROM node:20-bookworm
+FROM node:24-bookworm
 WORKDIR /app
 COPY . .
 RUN npm i

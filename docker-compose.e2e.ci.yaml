@@ -39,6 +39,7 @@ services:
       dockerfile: Dockerfile.e2e
     ipc: host
     environment:
+      DATABASE_URL: ${DATABASE_URL}
       PLAYWRITE_BASE_URL: ${PLAYWRITE_BASE_URL}
       CI: "true"
     networks:

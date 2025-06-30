@@ -5,9 +5,9 @@ services:
   web:
     container_name: my-app-web-test-dev
     build: ./web
-    command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run dev"
-    expose:
-      - 3000
+    command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run prisma:seed && npm run dev"
+    ports:
+      - 3000:3000
     environment:
       DATABASE_URL: ${DATABASE_URL}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
@@ -40,6 +40,7 @@ services:
     ipc: host
     environment:
       PLAYWRITE_BASE_URL: ${PLAYWRITE_BASE_URL}
+      CI: "true"
     networks:
       - my-app-test-network
     depends_on:

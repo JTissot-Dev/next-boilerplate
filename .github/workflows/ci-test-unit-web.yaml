@@ -6,7 +6,7 @@ on:
       - 'web/**'
 
 jobs:
-  format:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

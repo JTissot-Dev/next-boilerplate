@@ -8,14 +8,16 @@ on:
       - main
 
 jobs:
-  test:
+  e2e-test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Build and test
         run: docker compose -f docker-compose.e2e.ci.yaml up --abort-on-container-exit
-        env:
+        # Set GitHub secrets in your project repository settings: 
+        # your-project → Settings → Secrets and variables → Actions
+        env: 
           APP_ENV: ${{ secrets.APP_ENV }}
           POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}

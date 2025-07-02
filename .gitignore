@@ -1,6 +1,6 @@
 .env.dev
 .env.test
 .env.prod
-.env.e2e
+.env.dev.e2e
 .env.e2e.local
 data

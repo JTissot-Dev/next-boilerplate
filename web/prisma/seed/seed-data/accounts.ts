@@ -5,7 +5,7 @@ const accounts = [
     accountId: "john.doe@example.com",
     providerId: "credential",
     userId: "user_1_john_doe",
-    password: "$2a$12$4z3F6N9mKL8jQ2wE5rT7yOe8pUvBxC1nD6gS9hI2aF5bK0lM3pO7q", // "Password2025*" hashé
+    password: "06523554e04b2a003a402e299389618b:dae281984aac2074cd5ded5ef07716bd52718c7557fd2d9f963b844c7f2bc5c9589744367926efd2f8090b90b819d9e5974cb4a069b0ddf5b8cb49ebf8151402", // "Password2025*" hashé
     createdAt: new Date('2024-01-15T10:00:00Z'),
     updatedAt: new Date('2024-01-15T10:00:00Z')
   },
@@ -30,7 +30,7 @@ const accounts = [
     accountId: "jane.smith@example.com",
     providerId: "credential",
     userId: "user_2_jane_smith",
-    password: "$2a$12$9X8VqZ2mN5HgK8LdRtY3WuE7FsA1BcD2EfG3HiJ4KlM5NoP6QrS7T", // "mypassword456" hashé
+    password: "3a97966e11753e02c6e36d9d150e87f9:c8ffb417b02cbbe6add93fde18a19b5e1c193ce65f75e8a097b348bbb0f9e0a571a66a7619cc9baa358868fbcbb1c3fc6f63bf0cad64118f52e6828dca0104f4", // "Password2026*" hashé
     createdAt: new Date('2024-01-20T14:30:00Z'),
     updatedAt: new Date('2024-01-20T14:30:00Z')
   }

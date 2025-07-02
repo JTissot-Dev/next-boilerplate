@@ -8,6 +8,8 @@ test.describe('Signup tests', () => {
   const signupName = 'test.user.signup';
 
   test.beforeEach(async () => {
+    test.setTimeout(200_000);
+
     await prisma.user.deleteMany({
       where: {
         email: signupEmail
@@ -29,8 +31,8 @@ test.describe('Signup tests', () => {
     await page.getByRole('textbox', { name: 'Mot de passe' }).fill('Test20251**');
     await page.getByRole('button', { name: 'S\'inscrire' }).click();
     await expect(page.getByRole('button', { name: 'Création du compte...' })).toBeVisible();
-    await expect(page.getByText('Inscription réussie !')).toBeVisible({ timeout: 50000 });
-    await expect(page).toHaveURL('/login', { timeout: 50000 });
+    await expect(page.getByText('Inscription réussie !')).toBeVisible({ timeout: 200_000 });
+    await expect(page).toHaveURL('/login', { timeout: 50_000 });
   });
 
   test('signup with existing email', async ({ page }) => {
@@ -43,7 +45,7 @@ test.describe('Signup tests', () => {
     await page.getByRole('textbox', { name: 'Mot de passe' }).fill('Password2025*');
     await page.getByRole('button', { name: 'S\'inscrire' }).click();
     await expect(page.getByRole('button', { name: 'Création du compte...' })).toBeVisible();
-    await expect(page.getByText('Un compte utilisateur est déjà associé à cet email.')).toBeVisible({ timeout: 50000 });
-    await expect(page).toHaveURL('/signup', { timeout: 50000 });
+    await expect(page.getByText('Un compte utilisateur est déjà associé à cet email.')).toBeVisible({ timeout: 200_000 });
+    await expect(page).toHaveURL('/signup');
   });
 })

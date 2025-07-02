@@ -31,6 +31,7 @@ const useSignIn = () => {
             toast.error("Email ou mot de passe invalide. Veuillez réessayer.");
             break;
           default:
+            console.log(ctx.error);
             toast.error(
               "Une erreur s'est produite. Veuillez réessayer plus tard.",
             );

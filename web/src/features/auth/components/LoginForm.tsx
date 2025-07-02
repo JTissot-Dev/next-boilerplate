@@ -10,7 +10,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import SignInGitHub from "./SignInGitHub";
+import PasswordInput from "./PasswordInput";
+import SignInGoogle from "./SignInGoogle";
+import SignInFacebook from "./SignInFacebook";
 import useLoginForm from "../hooks/use-login-form";
 import LoadingButton from "@/components/common/LoadingButton";
 import { useAuthContext } from "../context";
@@ -65,7 +67,7 @@ const LoginForm: React.FC = () => {
                     </a>
                   </div>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <PasswordInput {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,11 +82,14 @@ const LoginForm: React.FC = () => {
               Se connecter
             </LoadingButton>
             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-              <span className="bg-background text-muted-foreground relative z-10 px-2">
+              <span className="bg-card text-muted-foreground relative z-10 px-2">
                 Ou continuez avec
               </span>
             </div>
-            <SignInGitHub />
+            <div className="grid grid-cols-1 gap-4">
+              <SignInGoogle />
+              <SignInFacebook />
+            </div>
           </form>
           <div className="text-center text-sm mt-6">
             Pas encore de compte?{" "}

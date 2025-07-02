@@ -1,0 +1,63 @@
+name: "my-app-test"
+
+services:
+
+  web:
+    container_name: my-app-web-test-dev
+    build: ./web
+    command: sh -c "npm run prisma:migrate:deploy && npm run prisma:generate && npm run prisma:seed && npm run dev"
+    ports:
+      - 3000:3000
+    env_file: .env.dev.e2e
+    networks:
+      - my-app-test-network
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./web/src:/app/src
+      - ./web/public:/app/public
+      - ./web/prisma:/app/prisma
+    environment:
+      - WDS_SOCKET_HOST=127.0.0.1
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    healthcheck:
+      test: 'curl --fail http://localhost:3000 || exit 1'
+      interval: 2s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  database:
+    container_name: my-app-database-test
+    image: postgres:16
+    env_file: .env.dev.e2e
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - my-app-test-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8080
+    networks:
+      - my-app-test-network
+    environment:
+      ADMINER_DESIGN: pappu687
+    depends_on:
+      database:
+        condition: service_healthy
+
+networks:
+  my-app-test-network:
+    driver: bridge

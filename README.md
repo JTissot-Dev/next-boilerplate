@@ -20,6 +20,30 @@ Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et
 - ![Vitest](https://img.shields.io/badge/Vitest-6E3AA7?style=for-the-badge&logo=vitest&logoColor=white)
 - ![Playwright](https://img.shields.io/badge/Playwright-000000?style=for-the-badge&logo=playwright&logoColor=white)
 
+## 🧩 Feature based architecture
+
+Le projet adopte une architecture modulaire par fonctionnalité, apportant scalabilité, lisibilité du code et meilleure maintenabilité.  
+Chaque fonctionnalité est isolée dans un module autonome regroupant ses propres composants, hooks, logique métier, types et tests.  
+
+        features                
+            └── auth             
+                 ├── api         // Hooks et logique d'appels API spécifiques à l'auth
+                 │   
+                 ├── components  // Composants React spécifiques à l'authentification
+                 │   
+                 ├── context.tsx // Context React spécifique à l'authentification
+                 │   
+                 ├── emails      // Templates d'emails pour l'authentification
+                 │   
+                 ├── hooks       // Hooks React personnalisés pour l'auth
+                 │   
+                 ├── types       // Types TypeScript spécifiques à l'authentification
+                 │   
+                 └── __tests__   
+                       ├── e2e   
+                       │   
+                       └── units 
+                       
 
 ## 🛠️ Installation & setup
 

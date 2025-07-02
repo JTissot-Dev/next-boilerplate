@@ -1,4 +1,4 @@
-# 🚀 next-boilerplate
+# 🚀 Next15 Auth Starter
 
 Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et tout ce dont tu as besoin pour démarrer rapidement un projet.
 

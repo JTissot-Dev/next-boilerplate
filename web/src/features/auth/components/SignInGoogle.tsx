@@ -17,7 +17,7 @@ const SignInGoogle: React.FC = () => {
       loading={loading}
       className="w-full text-current"
       type="button"
-      loadingText="Redirection en cours..."
+      loadingText="Redirection..."
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const SignInGoogle: React.FC = () => {
           fill="currentColor"
         />
       </svg>
-      Se connecter avec Google
+      Google
     </LoadingButton>
   );
 };

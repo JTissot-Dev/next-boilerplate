@@ -17,7 +17,7 @@ const SignInFacebook: React.FC = () => {
       loading={loading}
       className="w-full text-current"
       type="button"
-      loadingText="Redirection en cours..."
+      loadingText="Redirection..."
     >
       <svg
         width="800px"
@@ -30,7 +30,7 @@ const SignInFacebook: React.FC = () => {
           fill="currentColor"
         />
       </svg>
-      Se connecter avec Facebook
+      Facebook
     </LoadingButton>
   );
 };

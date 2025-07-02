@@ -23,7 +23,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <>
-      <div className="w-full mx-auto py-10 space-y-4">
+      <div className="w-full mx-auto pt-10 pb-12 space-y-4">
         <div className="mb-10">
           <h1 className="text-2xl font-semibold text-center leading-6">
             Se connecter
@@ -86,7 +86,7 @@ const LoginForm: React.FC = () => {
                 Ou continuez avec
               </span>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <SignInGoogle />
               <SignInFacebook />
             </div>

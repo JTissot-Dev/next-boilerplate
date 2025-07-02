@@ -2,14 +2,11 @@
 
 Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et tout ce dont tu as besoin pour démarrer rapidement un projet.
 
----
-
 ## 🧰 Prérequis
 
 - <a href="https://git-scm.com/downloads">Git</a>
 - <a href="https://www.docker.com">Docker Desktop</a>
 
----
 
 ## 🔧 Technologies
 
@@ -23,7 +20,6 @@ Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et
 - ![Vitest](https://img.shields.io/badge/Vitest-6E3AA7?style=for-the-badge&logo=vitest&logoColor=white)
 - ![Playwright](https://img.shields.io/badge/Playwright-000000?style=for-the-badge&logo=playwright&logoColor=white)
 
----
 
 ## 🛠️ Installation & setup
 

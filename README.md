@@ -16,7 +16,7 @@ Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et
 - <a href="https://www.docker.com">Docker Desktop</a>
 
 
-## 🔧 Technologies
+## ⚙️ Technologies
 
 - ![Next.js](https://img.shields.io/badge/Next.js%2015-000000?style=for-the-badge&logo=next.js&logoColor=white)
 - ![Better-Auth](https://img.shields.io/badge/Better--Auth-4A90E2?style=for-the-badge&logo=auth0&logoColor=white)
@@ -55,16 +55,16 @@ Chaque fonctionnalité est isolée dans un module autonome regroupant ses propre
 
 ## 🛠️ Installation & setup
 
-### 1. Cloner le dépôt
+### Cloner le dépôt
 
 ```bash
 git clone https://github.com/JTissot-Dev/next-boilerplate.git
 cd next-boilerplate
 ```
 
-## Mode développement
+### 🔧 Mode développement
 
-### Configuration des variables d'environnement
+#### Configuration des variables d'environnement
 
 Créer un fichier `.env.dev` à la racine du projet et renseigner les variables suivantes :
 
@@ -150,7 +150,7 @@ make lint
 docker exec -it my-app-web-dev npm run lint
 ```
 
-## Tests locaux
+## 🧪 Tests locaux
 
 ### Tests unitaires
 
@@ -242,3 +242,25 @@ docker compose -f docker-compose.e2e.local.yaml up --build --detach
 cd web
 npm run test:e2e:local
 ```
+
+## 🔁 Pipelines CI
+
+    ├── .github
+        ├── ci-static-web.yaml         // Pipeline CI tests statiques (lint & format)
+        ├── ci-test-e2e-web.yaml       // Pipeline CI tests E2E
+        └── ci-test-unit-web.yaml      // Pipeline CI tests unitaires
+
+### Tests Statiques (ci-static-web)
+⚡Déclenchement à chaque push sur le dépôt distant.
+  - 🧹 Linting : Analyse statique du code TypeScript/React avec ESLint
+  - ✨ Formatage : Vérification du formatage du code avec Prettier
+  - 📝 Standards : Validation des conventions de codage et bonnes pratiques
+
+### Tests Unitaires (ci-test-unit-web)
+⚡Déclenchement à chaque push sur le dépôt distant.
+  - ✅ Tests unitaires : Exécution de la suite de tests avec Vitest
+
+### Tests End-to-End (ci-test-e2e-web)
+⚡Déclenchement lors des pull requests vers les branches develop et main
+  - 🐳 Orchestration build & execution des conteneurs pour l'environnement de test E2E
+  - 🎭 Test E2E : Exécution des tests end-to-end via Playwright

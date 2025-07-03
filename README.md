@@ -2,6 +2,14 @@
 
 Boilerplate moderne pour Next.js, intégrant authentification, mailing, tests et tout ce dont tu as besoin pour démarrer rapidement un projet.
 
+
+<br>
+<div align="center">
+  <img src="https://github.com/JTissot-Dev/next-boilerplate/blob/main/readme-illustration.gif?raw=true" width="100%">
+</div>
+<br>
+
+
 ## 🧰 Prérequis
 
 - <a href="https://git-scm.com/downloads">Git</a>

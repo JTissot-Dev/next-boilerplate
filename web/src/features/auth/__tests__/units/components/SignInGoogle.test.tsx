@@ -21,7 +21,7 @@ describe("SignInGoogle", () => {
     });
     render(<SignInGoogle />);
     expect(
-      screen.getByRole("button", { name: "Se connecter avec Google" }),
+      screen.getByRole("button", { name: "Google" }),
     ).toBeInTheDocument();
   });
 
@@ -34,7 +34,7 @@ describe("SignInGoogle", () => {
 
     render(<SignInGoogle />);
     const button = screen.getByRole("button", {
-      name: "Se connecter avec Google",
+      name: "Google",
     });
     fireEvent.click(button);
 
@@ -51,7 +51,7 @@ describe("SignInGoogle", () => {
 
     render(<SignInGoogle />);
     const button = screen.getByRole("button", {
-      name: "Redirection en cours...",
+      name: "Redirection...",
     });
     await waitFor(() => {
       expect(button).toBeInTheDocument();

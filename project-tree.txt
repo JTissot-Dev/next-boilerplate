@@ -1,0 +1,77 @@
+next-boilerplate
+│
+├── .github
+│    ├── ci-static-web.yaml         // Pipeline CI tests statiques (lint & format)
+│    ├── ci-test-e2e-web.yaml       // Pipeline CI tests E2E
+│    └── ci-test-unit-web.yaml      // Pipeline CI tests unitaires
+│
+├── docker-compose.dev.yaml         // Application en environnement de dev
+├── docker-compose.e2e.ci.yaml      // Orchestration des conteneurs pour les tests E2E dans la CI
+├── docker-compose.e2e.local.yaml   // Application Docker dédiée pour l'ecriture des tests E2E en local
+│
+└── web
+    │
+    ├── Dockerfile                  // Image Docker pour l'application web en développement & production
+    ├── Dockerfile.e2e              // Image Docker spécialisée pour l'exécution des tests e2e
+    │
+    ├── prisma                      
+    │   ├── migrations              
+    │   ├── schema.prisma           // Modèles Prisma
+    │   └── seed                    // Scripts et données pour initialiser la base de données
+    │       ├── seed-data           // Données de test/démo à insérer lors du seeding
+    │       └── seed.ts             // Script d'exécution du seeding
+    │
+    ├── public                      
+    └── src                         
+        ├── app                     
+        │   ├── (authenticated)     // Routes protégées nécessitant une authentification
+        │   │   
+        │   ├── (guest)             // Routes publiques (login, signup, etc.)
+        │   │   
+        │   ├── api                 
+        │   │   
+        │   ├── favicon.ico         
+        │   ├── globals.css         
+        │   └── layout.tsx          
+        │   
+        ├── components              // Composants React réutilisables
+        │   ├── common              // Composants génériques utilisés dans plusieurs features
+        │   │   
+        │   ├── layout              // Composants de mise en page (header, footer, sidebar)
+        │   │   
+        │   ├── theme               // Composants liés au thème et à l'apparence
+        │   │    
+        │   └── ui                  // Composants d'interface utilisateur de base (Shadcn/ui)
+        │
+        ├── features                
+        │      └── auth             
+        │           ├── api         // Gestion des communications avec les APIs
+        │           │   
+        │           ├── components  // Présentation et interaction utilisateur
+        │           │   
+        │           ├── context.tsx // Partage d'état global entre composants de la feature
+        │           │   
+        │           ├── emails      // Templates React pour les emails
+        │           │   
+        │           ├── hooks       // Hooks encapsulant la logique métier
+        │           │   
+        │           ├── types       // Types TypeScript spécifiques à l'authentification
+        │           │   
+        │           └── __tests__   
+        │                 ├── e2e   
+        │                 │   
+        │                 └── units 
+        │                           
+        ├── hooks                   // Hooks React globaux partagés entre les features
+        │   
+        ├── lib                     
+        │   ├── auth-client.ts      // Configuration du client d'authentification (Better Auth)
+        │   ├── auth.ts             // Configuration serveur d'authentification
+        │   ├── email.ts            // Configuration du service d'envoi d'emails
+        │   ├── fetchers.ts         // Fonctions utilitaires pour les appels API
+        │   ├── prisma.ts           // Instance et configuration du client Prisma
+        │   ├── query-client.ts     // Configuration React Query/TanStack Query
+        │   └── utils.ts            // Fonctions utilitaires génériques
+        │
+        ├── middleware.ts           // Configuration des redirections accès
+        └── repositories            // Couche d'accès aux données (abstraction base de données)

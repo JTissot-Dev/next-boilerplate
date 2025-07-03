@@ -4,7 +4,7 @@ build-dev:
 run-dev:
 	docker compose -f docker-compose.dev.yaml up --detach
 
-migrate-generate-dev:
+migrate-generate:
 	docker exec -it my-app-web-dev npm run prisma:migrate:dev
 
 better-auth-generate:
@@ -14,10 +14,10 @@ db-seed:
 	docker exec -it my-app-web-dev npm run prisma:seed
 
 format:
-	npm run format
+	docker exec -it my-app-web-dev npm run format
 	
 lint:
-	npm run lint
+	docker exec -it my-app-web-dev npm run lint
 
 test-dev-e2e:
 	docker compose -f docker-compose.e2e.local.yaml up --build --detach
